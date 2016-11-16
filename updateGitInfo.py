@@ -5,7 +5,8 @@ import json
 from datetime import datetime
 
 import sys
-sys.path.append('~/Desktop/github/secret_tokens')
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '../tokens'))
 
 import tokens
 
@@ -52,8 +53,7 @@ os.chdir(path)
 output = subprocess.check_output(["git", "status"])
 
 if "nothing to commit" in output:
-        subprocess.check_output(["git", "push", "origin", "master"])
-        print(output)
+        return
 else:
         subprocess.call(["git", "add", "_data/github_stats.json"])
         subprocess.call(["git", "commit", "-m", "'update github_stats.json'"])
